@@ -55,7 +55,7 @@
       //console.log('Response completo', response);
       console.log('Status response: ',response.status);
       let data = await response.text();
-      console.log ('Texto response: ',data)  
+      console.log ('Texto response: ',data)
     }
 
     async function xxxxGet2(){  
@@ -115,7 +115,7 @@
       else console.log (`Nome ${parametro} NÃO localizado no servidor`);
     }
 
-    async function FETCHPost1 (parametro){
+    async function Post1 (parametro){
       console.log('Via Fetch');
       let url =  new URL('http://localhost:3000/destino1');
       let response = await fetch(url, {
@@ -126,12 +126,12 @@
       switch (response.status){
         case 201: 
           console.log ('Sucesso no envio do Json para o servidor'); break;
-        case 406:
+        case 400:
           console.log ('Corrija o dado enviado'); break;
         }
     }
 
-    function Post1(parametro){
+    function AJAX_Post1(parametro){
       console.log('Via Ajax');
       let url = new URL('http://localhost:3000/destino1');
     $.post({
