@@ -4,11 +4,11 @@ const service = require('./service.js');
 
 
 router.get('/destino1', function (req, res) {
-  res.status(201).send('Resposta do servidor DESTINO 1');
+  res.send('Resposta do servidor DESTINO 1');
 })
 
 router.get('/destino2', (req, res) => {
-  res.send('Resposta do servidor DESTINO 2');
+  res.status(201).send('Resposta do servidor DESTINO 2');
 })
 
 router.get('/destino3', (req, res) => {
