@@ -23,14 +23,6 @@ router.get('/destino3', (req, res) => {
   res.send(myJson);
 })
 
-router.get('/destino4', (req, res) => {
-  if ( service.ConsultaNome(req.query.nome) ) 
-  {
-    res.status(200).send();
-  }  
-  else res.status(404).send();
-})
-
 router.post('/',  (req, res) => {
   if ( service.AnalisaJson(req.body) ) 
   {
@@ -38,5 +30,13 @@ router.post('/',  (req, res) => {
   }  
   else res.status(400).send();
 });
+
+router.get('/destino4', (req, res) => {
+  if ( service.ConsultaNome(req.query.nome) ) 
+  {
+    res.status(200).send();
+  }  
+  else res.status(404).send();
+})
 
 module.exports = router;
