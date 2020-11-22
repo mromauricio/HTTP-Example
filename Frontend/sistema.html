@@ -108,7 +108,7 @@
       let url =  new URL('http://localhost:3000/destino4');
       url += `/?nome=${parametro}`
       let response = await fetch(url);
-      console.log (response.status);
+      console.log ('Response Status: ',response.status);
       if (response.status==200) {
         console.log (`Nome ${parametro} localizado no servidor`);
       }
@@ -117,7 +117,7 @@
 
     async function Post1 (parametro){
       console.log('Via Fetch');
-      let url =  new URL('http://localhost:3000/destino1');
+      let url =  new URL('http://localhost:3000');
       let response = await fetch(url, {
         method: 'POST',
         headers: {'Content-Type': 'application/json;charset=utf-8'},
@@ -133,7 +133,7 @@
 
     function AJAX_Post1(parametro){
       console.log('Via Ajax');
-      let url = new URL('http://localhost:3000/destino1');
+      let url = new URL('http://localhost:3000');
     $.post({
           url: url,
           data: parametro,

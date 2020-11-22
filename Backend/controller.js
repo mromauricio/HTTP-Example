@@ -12,7 +12,7 @@ router.get('/destino2', (req, res) => {
 })
 
 router.get('/destino3', (req, res) => {
-  res.header('Content-type','application/json');
+  // res.header('Content-type','application/json');
   let myJson = [{"nome":"Maria","cpf":"123.456.789-10"},
   {"nome":"Joao","cpf":"000.000.000-00"},
   {"nome":"Pedro","cpf":"999.999.999-99"},
@@ -27,7 +27,7 @@ router.get('/destino4', (req, res) => {
   else res.status(404).send();
 })
 
-router.post('/destino1',  (req, res) => {
+router.post('/',  (req, res) => {
   if ( service.AnalisaJson(req.body) ) res.status(201).send();      
   else res.status(400).send();
 });
