@@ -1,16 +1,18 @@
 const dao = require('./dao.js');
 
 exports.AnalisaJson = (body) => {
-  if (!body.nome || !body.cpf) {
-    console.log('Json negado');
-    return false;
+  if (body.nome && body.cpf) {
+    body.nome = body.nome.toUpperCase()
+    console.log(body.nome)
+    return ( dao.GravaJson(body) );
   }
   else {
-      return ( dao.GravaJson(body) );
+    console.log('Json negado');
+    return false;
   }
 };
 
 exports.ConsultaNome = (nome) => {
-  if (nome == 'xpto') return false
+  nome = nome.toUpperCase()
   return ( dao.ProcuraNome(nome) )
 }

@@ -1,9 +1,12 @@
 let conteudoInputGet = document.querySelector('#inputget');
 let buttonEnviaGet = document.querySelector('#enviaGet'); 
+
 let conteudoInputPost = document.querySelector('#inputpost');
 let buttonEnviaPost = document.querySelector('#enviaPost'); 
 
-buttonEnviaGet.addEventListener('click', function(){
+buttonEnviaGet.addEventListener('click', meunome);
+
+function meunome  (){
   switch (conteudoInputGet.value){
     case '1':
       Get1(); break;
@@ -17,25 +20,31 @@ buttonEnviaGet.addEventListener('click', function(){
     default:
       GetDefault(conteudoInputGet.value); break;
   }
-});
+}
 
 buttonEnviaPost.addEventListener('click', function(){
+  console.log (conteudoInputPost.value)
+  let conteudojson = JSON.parse(conteudoInputPost.value)
+  if (conteudojson.cpf.substr(0,1) >= 0 && conteudojson.cpf.substr(0,1) <= 9 )
+  {
+  console.log (' CPF OK ')  
   Post1(conteudoInputPost.value);
+  }
+  else console.log ('CPF inconsistente')
 });
 
 async  function Get1(){  
-  let url =  new URL('http://localhost:3000/destino1');
-  let response =  await fetch(url);
+  // let url =  new URL('http://localhost:3000/destino1');
+  let response =  await fetch('http://localhost:3000/destino1');
   //console.log('Response completo', response);
-  console.log('Status response: ',response.status);
-  let data = await response.text();
-  console.log ('Texto response: ',data)
+  // console.log('Status response: ',response.status);
+  console.log (await response.text())
 }
 
 async function Get2(){  
-  let url =  new URL('http://localhost:3000/destino2');
+  let url =  new URL('http://localhost:3000/speedy');
   let response = await fetch(url);
-  console.log ('Status response: ',response.status);
+  // console.log ('Status response: ',response.status);
   let data = await response.text();
   console.log ('Texto response: ',data)  
 }
@@ -43,17 +52,17 @@ async function Get2(){
 async function GetJson(){  
   let url =  new URL('http://localhost:3000/destino3');
   let response = await fetch(url);
-  console.log (response.status);
+  // console.log (response.status);
   let data = await response.json();
-  // console.log(data);
-  for (i=0; i<data.length; i++){
-    console.log ('Nome: ', data[i].nome,'    CPF: ', data[i].cpf);
+  console.log(data);
+  for (i=0; i < data.length; i++){
+    console.log (data[i].nome);
   }
 }
 
 async function GetDefault(parametro){  
   let url =  new URL('http://localhost:3000/destino4');
-  url += `/?nome=${parametro}`
+  url += `/?nome=${parametro}&laranja='123'`
   let response = await fetch(url);
   console.log ('Response Status: ',response.status);
   if (response.status==200) {
